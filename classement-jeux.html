@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Hundred Best Games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#07070f; --s1:#0c0c1a; --s2:#101020; --s3:#161628;
+      --bd:#1c1c30; --bd2:#252538;
+      --ac:#8b5cf6; --cy:#06b6d4; --go:#f59e0b; --gr:#10b981; --re:#ef4444;
+      --t1:#e2e8f0; --t2:#8892a4; --t3:#3d4a5c;
+    }
+    [data-theme="light"] {
+      --bg:#f4f4fc; --s1:#ffffff; --s2:#f0f0f8; --s3:#e8e8f2;
+      --bd:#dddde8; --bd2:#c8c8dc;
+      --t1:#111118; --t2:#4a5068; --t3:#9090a8;
+    }
+    [data-theme="light"] header{background:rgba(244,244,252,.92);}
+    [data-theme="light"] .mobile-nav{background:rgba(244,244,252,.97);}
+    [data-theme="light"] .hero-bg{background:radial-gradient(ellipse 90% 70% at 50% -5%,rgba(139,92,246,.14) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 85% 90%,rgba(6,182,212,.07) 0%,transparent 60%),linear-gradient(180deg,#eeeef8 0%,var(--bg) 100%);}
+    [data-theme="light"] .hero h1{color:#111118;}
+    [data-theme="light"] .hero h1 em{background:linear-gradient(125deg,var(--ac) 30%,var(--cy) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    [data-theme="light"] .stat-num{color:#111118;}
+    .theme-btn{background:var(--s3);border:1px solid var(--bd2);color:var(--t1);border-radius:10px;padding:6px 10px;font-size:1rem;cursor:pointer;transition:background .2s,border-color .2s;line-height:1;margin-left:.5rem;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;}
+
+    /* HEADER */
+    header{background:rgba(7,7,15,.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--bd);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px;position:sticky;top:0;z-index:200;}
+    .logo{font-size:1.05rem;font-weight:800;color:var(--t1);letter-spacing:-.3px;white-space:nowrap;}
+    .logo em{font-style:italic;color:var(--ac);}
+    nav{display:flex;align-items:center;gap:.1rem;}
+    nav a{color:var(--t3);text-decoration:none;padding:.4rem .85rem;border-radius:8px;font-size:.82rem;font-weight:500;transition:all .2s;white-space:nowrap;}
+    nav a:hover,nav a.active{color:var(--t1);background:var(--s3);}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border-radius:8px;background:transparent;border:none;}
+    .hamburger span{display:block;width:20px;height:2px;background:var(--t2);border-radius:2px;transition:all .3s;}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .mobile-nav{display:none;position:fixed;top:62px;left:0;right:0;background:rgba(7,7,15,.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--bd);padding:1rem 1.5rem;flex-direction:column;gap:.2rem;z-index:190;}
+    .mobile-nav.open{display:flex;}
+    .mobile-nav a{color:var(--t2);text-decoration:none;padding:.7rem .9rem;border-radius:10px;font-size:.9rem;font-weight:500;transition:all .2s;}
+    .mobile-nav a:hover,.mobile-nav a.active{color:var(--t1);background:var(--s3);}
+
+    /* HERO */
+    .hero{position:relative;overflow:hidden;padding:5.5rem 1.5rem 4.5rem;text-align:center;}
+    .hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 90% 70% at 50% -5%,rgba(139,92,246,.22) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 85% 90%,rgba(6,182,212,.1) 0%,transparent 60%),linear-gradient(180deg,#0d0c20 0%,var(--bg) 100%);}
+    .hero-line{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--ac),var(--cy),transparent);opacity:.35;}
+    .hero-inner{position:relative;}
+    .hero-pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.28);color:var(--ac);font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 16px;border-radius:999px;margin-bottom:1.8rem;}
+    .hero h1{font-size:clamp(2.6rem,7vw,4.8rem);font-weight:900;color:#fff;line-height:1.04;letter-spacing:-2px;margin-bottom:1.1rem;}
+    .hero h1 em{font-style:italic;background:linear-gradient(125deg,var(--ac) 30%,var(--cy) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero-desc{color:var(--t3);font-size:.95rem;max-width:460px;margin:0 auto;line-height:1.65;}
+    .hero-stats{display:flex;justify-content:center;gap:3rem;margin-top:2.8rem;flex-wrap:wrap;}
+    .stat-num{font-size:1.9rem;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1;}
+    .stat-lbl{font-size:.65rem;color:var(--t3);text-transform:uppercase;letter-spacing:1.8px;margin-top:5px;}
+
+    /* FILTERS */
+    .filters{max-width:1100px;margin:2.2rem auto 0;padding:0 1.5rem;display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;}
+    .filter-label{color:var(--t3);font-size:.75rem;font-weight:500;margin-right:.2rem;}
+    .filter-btn{background:var(--s2);border:1px solid var(--bd);color:var(--t2);padding:.38rem 1rem;border-radius:999px;cursor:pointer;font-size:.76rem;font-weight:500;font-family:inherit;transition:all .2s;white-space:nowrap;}
+    .filter-btn:hover{border-color:var(--ac);color:var(--t1);background:rgba(139,92,246,.07);}
+    .filter-btn.active{background:rgba(139,92,246,.14);border-color:var(--ac);color:var(--ac);}
+
+    /* RANK TABLE */
+    .container{max-width:1100px;margin:1.8rem auto 0;padding:0 1.5rem;}
+    .sec-lbl{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--t3);margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:.6rem;}
+    .sec-lbl::before{content:'';display:block;width:3px;height:12px;background:var(--ac);border-radius:2px;}
+    .rank-table{display:flex;flex-direction:column;gap:.3rem;}
+    .rank-row{background:var(--s1);border:1px solid var(--bd);border-radius:14px;display:grid;grid-template-columns:46px 54px 1fr auto auto auto;align-items:center;padding:.75rem 1rem;gap:.8rem;transition:all .18s;cursor:pointer;position:relative;overflow:hidden;}
+    .rank-row::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(139,92,246,.05) 0%,transparent 50%);opacity:0;transition:opacity .2s;}
+    .rank-row:hover{background:var(--s2);border-color:var(--bd2);transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,0,0,.45);}
+    .rank-row:hover::after{opacity:1;}
+    .rank-row.top3{border-left:2px solid var(--ac);}
+    .rank-num{font-size:1.05rem;font-weight:900;color:var(--s3);text-align:center;font-variant-numeric:tabular-nums;position:relative;z-index:1;}
+    .rank-row.top3 .rank-num{color:var(--ac);}
+    .rank-num.gold{color:#f59e0b!important;} .rank-num.silver{color:#94a3b8!important;} .rank-num.bronze{color:#cd7f32!important;}
+    .game-cover{width:50px;height:50px;border-radius:10px;background:var(--s3);display:flex;align-items:center;justify-content:center;font-size:1.45rem;flex-shrink:0;box-shadow:0 2px 10px rgba(0,0,0,.5);position:relative;z-index:1;}
+    .game-info{min-width:0;position:relative;z-index:1;}
+    .game-title{font-size:.9rem;font-weight:700;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .game-meta{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:4px;align-items:center;}
+    .tag{background:var(--s3);border:1px solid var(--bd2);padding:1px 7px;border-radius:5px;font-size:.64rem;font-weight:600;color:var(--t3);}
+    .year-label{font-size:.66rem;color:var(--t3);font-weight:500;}
+    .platforms{display:flex;flex-wrap:wrap;gap:3px;justify-content:flex-end;position:relative;z-index:1;}
+    .platform{font-size:.59rem;padding:2px 6px;border-radius:5px;font-weight:700;letter-spacing:.2px;white-space:nowrap;}
+    .pc  {background:rgba(90,176,240,.1); color:#5ab0f0;border:1px solid rgba(90,176,240,.2);}
+    .ps  {background:rgba(68,136,255,.1); color:#4a8fff;border:1px solid rgba(68,136,255,.2);}
+    .xbox{background:rgba(76,175,80,.1);  color:#4caf50;border:1px solid rgba(76,175,80,.2);}
+    .sw  {background:rgba(232,58,58,.1);  color:#e84444;border:1px solid rgba(232,58,58,.2);}
+    .trend{font-size:.66rem;font-weight:700;width:18px;text-align:center;flex-shrink:0;position:relative;z-index:1;}
+    .trend.up{color:var(--gr);} .trend.down{color:var(--re);} .trend.eq{color:var(--t3);}
+    .score-box{width:48px;height:48px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1;}
+    .score-num{font-size:1.05rem;font-weight:900;line-height:1;letter-spacing:-.5px;}
+    .score-label{font-size:.48rem;text-transform:uppercase;letter-spacing:1.5px;opacity:.55;margin-top:2px;}
+    .score-green {background:rgba(16,185,129,.1); color:#10b981;border:1px solid rgba(16,185,129,.22);}
+    .score-teal  {background:rgba(6,182,212,.1);  color:#06b6d4;border:1px solid rgba(6,182,212,.22);}
+    .score-yellow{background:rgba(245,158,11,.1); color:#f59e0b;border:1px solid rgba(245,158,11,.22);}
+    .score-orange{background:rgba(249,115,22,.1); color:#f97316;border:1px solid rgba(249,115,22,.22);}
+
+    /* SECTION HEADER */
+    .sec-wrap{max-width:1100px;margin:4.5rem auto 0;padding:0 1.5rem;}
+    .sec-head{display:flex;align-items:center;gap:.9rem;padding-bottom:1.1rem;border-bottom:1px solid var(--bd);margin-bottom:1.4rem;flex-wrap:wrap;}
+    .sec-pill{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:1.8px;padding:4px 13px;border-radius:999px;}
+    .pill-pur{background:rgba(139,92,246,.1);color:var(--ac);border:1px solid rgba(139,92,246,.22);}
+    .pill-grn{background:rgba(16,185,129,.1);color:#10b981;border:1px solid rgba(16,185,129,.22);}
+    .pill-blu{background:rgba(90,176,240,.1);color:#5ab0f0;border:1px solid rgba(90,176,240,.22);}
+    .sec-head h2{font-size:1.15rem;font-weight:800;color:var(--t1);}
+    .sec-head h2 .hl-p{color:var(--ac);} .sec-head h2 .hl-g{color:#10b981;} .sec-head h2 .hl-b{color:#5ab0f0;}
+    .sec-sub{font-size:.74rem;color:var(--t3);margin-left:auto;white-space:nowrap;}
+
+    /* SCORE CHART */
+    .chart-card{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.6rem 1.8rem;}
+    .chart-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.4rem;flex-wrap:wrap;gap:.5rem;}
+    .chart-title-txt{font-size:.88rem;font-weight:800;color:var(--t1);}
+    .chart-legend{display:flex;gap:1rem;flex-wrap:wrap;}
+    .leg-item{display:flex;align-items:center;gap:.35rem;font-size:.65rem;color:var(--t2);}
+    .leg-dot{width:8px;height:8px;border-radius:50%;}
+    .ld-pur{background:linear-gradient(135deg,var(--ac),var(--cy));}
+    .ld-teal{background:var(--cy);}
+    .ld-gold{background:var(--go);}
+    .chart-entries{display:flex;flex-direction:column;gap:.65rem;}
+    .ce{display:grid;grid-template-columns:32px 1fr 40px;align-items:center;gap:.85rem;}
+    .ce-rank{font-size:.75rem;font-weight:800;color:var(--t3);text-align:center;}
+    .ce-rank.top{color:var(--ac);}
+    .ce-body{display:flex;flex-direction:column;gap:5px;}
+    .ce-name{font-size:.76rem;font-weight:600;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .ce-track{height:9px;background:var(--s3);border-radius:999px;overflow:hidden;}
+    .ce-fill{height:100%;border-radius:999px;width:0;transition:width 1.1s cubic-bezier(.4,0,.2,1);}
+    .cf-pur {background:linear-gradient(90deg,var(--ac),var(--cy));}
+    .cf-teal{background:linear-gradient(90deg,#06b6d4,#22d3ee);}
+    .cf-gold{background:linear-gradient(90deg,#f59e0b,#fbbf24);}
+    .ce-val{font-size:.84rem;font-weight:900;text-align:right;}
+    .cv-pur{color:var(--ac);} .cv-teal{color:#06b6d4;} .cv-gold{color:#f59e0b;}
+
+    /* VALUE */
+    .val-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:.7rem;}
+    .value-card{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.15rem;display:flex;flex-direction:column;gap:.85rem;transition:all .2s;cursor:pointer;position:relative;overflow:hidden;}
+    .value-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(16,185,129,.5),transparent);opacity:0;transition:opacity .2s;}
+    .value-card:hover{background:var(--s2);border-color:rgba(16,185,129,.18);transform:translateY(-2px);box-shadow:0 10px 32px rgba(0,0,0,.5);}
+    .value-card:hover::before{opacity:1;}
+    .value-card.top-pick{border-left:2px solid #10b981;}
+    .vc-top{display:flex;align-items:flex-start;gap:.85rem;}
+    .vc-emoji{font-size:1.65rem;width:48px;height:48px;background:var(--s3);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .vc-info{min-width:0;flex:1;}
+    .vc-title{font-size:.88rem;font-weight:700;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .vc-meta{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:5px;align-items:center;}
+    .vc-price{font-size:.85rem;font-weight:800;color:#10b981;}
+    .vc-price.free{color:#06b6d4;}
+    .vc-plat{display:flex;gap:3px;margin-top:5px;flex-wrap:wrap;}
+    .vc-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.45rem;}
+    .vc-stat{background:var(--s3);border:1px solid var(--bd);border-radius:10px;padding:.5rem .4rem;text-align:center;}
+    .vc-stat-val{font-size:.92rem;font-weight:800;color:var(--t1);line-height:1;}
+    .vc-stat-lbl{font-size:.56rem;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+    .vc-bar-row{background:var(--s3);border:1px solid var(--bd);border-radius:10px;padding:.55rem .8rem;display:flex;align-items:center;gap:.75rem;}
+    .bar-track{flex:1;height:5px;background:var(--bd2);border-radius:999px;overflow:hidden;}
+    .bar-fill{height:100%;border-radius:999px;transition:width 1s ease;}
+    .bar-fill.excellent{background:linear-gradient(90deg,#10b981,#34d399);}
+    .bar-fill.good{background:linear-gradient(90deg,#06b6d4,#22d3ee);}
+    .bar-fill.ok{background:linear-gradient(90deg,#f59e0b,#fbbf24);}
+    .ratio-label{font-size:.66rem;font-weight:700;white-space:nowrap;}
+    .ratio-label.excellent{color:#10b981;} .ratio-label.good{color:#06b6d4;} .ratio-label.ok{color:#f59e0b;}
+
+    /* PRICE */
+    .sort-row{display:flex;gap:.4rem;margin-bottom:1.2rem;flex-wrap:wrap;align-items:center;}
+    .sort-lbl{font-size:.75rem;color:var(--t3);font-weight:500;margin-right:.1rem;}
+    .sort-btn{background:var(--s2);border:1px solid var(--bd);color:var(--t2);padding:.35rem .9rem;border-radius:999px;cursor:pointer;font-size:.74rem;font-weight:500;font-family:inherit;transition:all .2s;}
+    .sort-btn:hover{border-color:#5ab0f0;color:var(--t1);}
+    .sort-btn.active{background:rgba(90,176,240,.1);border-color:#5ab0f0;color:#5ab0f0;}
+    .price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:.7rem;margin-bottom:1rem;}
+    .pc-card{background:var(--s1);border:1px solid var(--bd);border-radius:16px;overflow:hidden;transition:all .2s;}
+    .pc-card:hover{background:var(--s2);border-color:rgba(90,176,240,.2);transform:translateY(-2px);box-shadow:0 10px 32px rgba(0,0,0,.5);}
+    .pc-card.pc-only{border-left:2px solid #5ab0f0;}
+    .pc-head{padding:1rem 1.1rem .85rem;display:flex;align-items:center;gap:.75rem;border-bottom:1px solid var(--bd);}
+    .pc-emoji{font-size:1.5rem;width:44px;height:44px;background:var(--s3);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .pc-info{min-width:0;flex:1;}
+    .pc-title{font-size:.88rem;font-weight:700;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .pc-plat{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap;}
+    .pc-best{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0;}
+    .pc-best-lbl{font-size:.5rem;color:var(--t3);text-transform:uppercase;letter-spacing:1px;}
+    .pc-savings{font-size:.65rem;color:var(--gr);font-weight:700;}
+    .pc-chart{padding:.85rem 1.1rem;display:flex;flex-direction:column;gap:.5rem;}
+    .pc-sec-lbl{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;color:var(--t3);padding:.3rem 0 .1rem;}
+    .pc-sep{height:1px;background:var(--bd);margin:.15rem 0;}
+    .pc-bar-row{display:grid;grid-template-columns:104px 1fr 62px;align-items:center;gap:.65rem;}
+    .pc-bar-lbl{display:flex;align-items:center;gap:.38rem;font-size:.69rem;font-weight:600;color:var(--t2);white-space:nowrap;}
+    .pc-bar-lbl.best{color:var(--gr);}
+    .pc-bar-track{height:7px;background:var(--s3);border-radius:999px;overflow:hidden;}
+    .pc-bar-fill{height:100%;border-radius:999px;width:0;transition:width .9s cubic-bezier(.4,0,.2,1);}
+    .bf-phys{background:linear-gradient(90deg,#d97706,#f59e0b);}
+    .bf-dig {background:linear-gradient(90deg,#0284c7,#38bdf8);}
+    .bf-best{background:linear-gradient(90deg,#059669,#10b981);}
+    .pc-bar-price{font-size:.75rem;font-weight:800;color:var(--t2);text-align:right;white-space:nowrap;}
+    .pc-bar-price.best{color:var(--gr);}
+    .v-badge{font-size:.63rem;font-weight:700;padding:3px 9px;border-radius:6px;text-align:center;white-space:nowrap;}
+    .v-fnac      {background:rgba(168,217,0,.09); color:#a8d900;border:1px solid rgba(168,217,0,.22);}
+    .v-micromania{background:rgba(255,92,138,.09);color:#ff5c8a;border:1px solid rgba(255,92,138,.22);}
+    .v-amazon    {background:rgba(255,153,0,.09); color:#ff9900;border:1px solid rgba(255,153,0,.22);}
+    .v-digital   {background:rgba(90,176,240,.09);color:#5ab0f0;border:1px solid rgba(90,176,240,.22);}
+
+    /* FOOTER */
+    footer{text-align:center;padding:3rem 1.5rem 2.5rem;border-top:1px solid var(--bd);margin-top:3rem;}
+    .foot-logo{font-size:1rem;font-weight:800;color:var(--t2);margin-bottom:.5rem;}
+    .foot-logo em{font-style:italic;color:var(--ac);}
+    .foot-sub{font-size:.72rem;color:var(--t3);}
+
+    /* ZOMBIE LANE */
+    .zl-lane{position:relative;width:100%;height:68px;overflow:hidden;pointer-events:none;}
+    .zl-gunman{position:absolute;left:4px;bottom:0;display:flex;align-items:flex-end;gap:0;z-index:3;}
+    .zl-gm-svg{display:block;flex-shrink:0;}
+    .zl-gun-barrel{width:13px;height:3px;background:#888;border-radius:0 2px 2px 0;margin-bottom:27px;border:1px solid #555;transition:background .12s,box-shadow .12s;}
+    .zl-gun-barrel.firing{background:#f59e0b;box-shadow:0 0 10px #f59e0b,0 0 22px rgba(245,158,11,.55);}
+    .zl-zombie{position:absolute;bottom:0;font-size:1.55rem;line-height:1;display:inline-block;}
+    @keyframes zl-walk{
+      0%  {transform:scaleX(-1) rotate(0deg)  translateY(0px);}
+      22% {transform:scaleX(-1) rotate(-4deg) translateY(-4px);}
+      50% {transform:scaleX(-1) rotate(0deg)  translateY(0px);}
+      72% {transform:scaleX(-1) rotate(4deg)  translateY(-4px);}
+      100%{transform:scaleX(-1) rotate(0deg)  translateY(0px);}
+    }
+    .zl-zombie.walking{animation:zl-walk .65s ease-in-out infinite;}
+    .zl-bullet{position:absolute;bottom:27px;width:12px;height:4px;background:linear-gradient(90deg,#f59e0b,#fde68a);border-radius:2px;box-shadow:0 0 8px rgba(245,158,11,.85),0 0 3px #fff;}
+    .zl-splat{position:absolute;bottom:4px;font-size:1rem;pointer-events:none;animation:zl-splat-anim .4s forwards;}
+    @keyframes zl-splat-anim{0%{opacity:1;transform:scale(.6);}60%{opacity:.8;transform:scale(1.3);}100%{opacity:0;transform:scale(1) translateY(-6px);}}
+
+    /* SCROLL REVEAL */
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1);transition-delay:var(--d,0ms);}
+    .rv-left{transform:translateX(-36px);}
+    .rv-right{transform:translateX(36px);}
+    .rv-fade{transform:none;}
+    .rv-scale{transform:translateY(20px) scale(.97);}
+    .reveal.visible{opacity:1;transform:none;}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){.sec-sub{display:none;}}
+    @media(max-width:768px){
+      nav{display:none;} .hamburger{display:flex;}
+      .val-grid{grid-template-columns:1fr;}
+      .price-grid{grid-template-columns:1fr;}
+      .hero{padding:3.5rem 1.5rem 3rem;}
+      .hero-stats{gap:1.8rem;}
+    }
+    @media(max-width:600px){
+      .pc-bar-row{grid-template-columns:82px 1fr 52px;gap:.5rem;}
+      .pc-bar-lbl{font-size:.63rem;}
+      .pc-bar-price{font-size:.7rem;}
+    }
+    @media(max-width:540px){
+      .rank-row{grid-template-columns:34px 44px 1fr auto;gap:.6rem;padding:.65rem .8rem;}
+      .platforms{display:none;} .trend{display:none;}
+      .game-cover{width:44px;height:44px;font-size:1.3rem;}
+      .score-box{width:44px;height:44px;} .score-num{font-size:.95rem;}
+      .game-title{font-size:.84rem;}
+      header{padding:0 1rem;}
+    }
+    @media(max-width:380px){
+      .rank-row{grid-template-columns:26px 1fr auto;} .game-cover{display:none;}
+      .logo{font-size:.88rem;}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">The <em>Hundred</em> Best Games</div>
+  <nav>
+    <a href="#classement" class="active">Classement</a>
+    <a href="#scores">Graphiques</a>
+    <a href="#valeur">Qualité / Prix</a>
+    <a href="#prix">Comparatif Prix</a>
+  </nav>
+  <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Mode clair / sombre">☀️</button>
+  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#classement" class="active" onclick="closeMenu()">Classement</a>
+  <a href="#scores" onclick="closeMenu()">Graphiques</a>
+  <a href="#valeur" onclick="closeMenu()">Qualité / Prix</a>
+  <a href="#prix" onclick="closeMenu()">Comparatif Prix</a>
+</div>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-inner">
+    <div class="hero-pill reveal rv-fade">✦ Édition 2026</div>
+    <h1 class="reveal rv-up" style="--d:100ms">The <em>Hundred</em><br>Best Games</h1>
+    <p class="hero-desc reveal rv-up" style="--d:210ms">Le classement ultime des meilleurs jeux vidéo, basé sur les notes de la presse spécialisée et des joueurs du monde entier.</p>
+    <div class="hero-stats reveal rv-fade" style="--d:340ms">
+      <div><div class="stat-num">100</div><div class="stat-lbl">Jeux classés</div></div>
+      <div><div class="stat-num">4</div><div class="stat-lbl">Plateformes</div></div>
+      <div><div class="stat-num">3</div><div class="stat-lbl">Magasins comparés</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="filters reveal rv-fade" id="classement">
+  <span class="filter-label">Genre :</span>
+  <button class="filter-btn active" onclick="filterGames('all',this)">Tous</button>
+  <button class="filter-btn" onclick="filterGames('Action',this)">Action</button>
+  <button class="filter-btn" onclick="filterGames('RPG',this)">RPG</button>
+  <button class="filter-btn" onclick="filterGames('Aventure',this)">Aventure</button>
+  <button class="filter-btn" onclick="filterGames('FPS',this)">FPS</button>
+  <button class="filter-btn" onclick="filterGames('Stratégie',this)">Stratégie</button>
+  <button class="filter-btn" onclick="filterGames('Sport',this)">Sport</button>
+</div>
+
+<div class="container">
+  <p class="sec-lbl reveal rv-fade">Classement général — Mis à jour le 28 avril 2026</p>
+  <div class="rank-table" id="rankTable"></div>
+</div>
+
+<!-- SCORE CHART -->
+<div class="sec-wrap" id="scores">
+  <div class="sec-head reveal rv-up">
+    <span class="sec-pill pill-pur">Graphique</span>
+    <h2>Scores des <span class="hl-p">15 meilleurs jeux</span></h2>
+    <span class="sec-sub">Note sur 100 — presse &amp; joueurs</span>
+  </div>
+  <div class="chart-card reveal rv-scale" style="--d:80ms">
+    <div class="chart-top">
+      <div class="chart-title-txt">Comparaison des notes</div>
+      <div class="chart-legend">
+        <div class="leg-item"><div class="leg-dot ld-pur"></div>≥ 90 — Exceptionnel</div>
+        <div class="leg-item"><div class="leg-dot ld-teal"></div>80–89 — Très bon</div>
+        <div class="leg-item"><div class="leg-dot ld-gold"></div>70–79 — Bon</div>
+      </div>
+    </div>
+    <div class="chart-entries" id="scoreChart"></div>
+  </div>
+</div>
+
+<!-- VALUE -->
+<div class="sec-wrap" id="valeur">
+  <div class="sec-head reveal rv-up">
+    <span class="sec-pill pill-grn">Sélection</span>
+    <h2>Meilleur rapport <span class="hl-g">Qualité / Prix</span></h2>
+    <span class="sec-sub">Score + durée de vie vs prix actuel</span>
+  </div>
+  <div class="val-grid" id="valueGrid"></div>
+</div>
+
+<!-- PRICE -->
+<div class="sec-wrap" id="prix">
+  <div class="sec-head reveal rv-up">
+    <span class="sec-pill pill-blu">Comparatif</span>
+    <h2>Magasin vs <span class="hl-b">Boutique numérique</span></h2>
+    <span class="sec-sub">Fnac · Micromania · Amazon vs stores digitaux</span>
+  </div>
+  <div class="sort-row reveal rv-fade" style="--d:60ms">
+    <span class="sort-lbl">Trier :</span>
+    <button class="sort-btn active" onclick="sortPrice('default',this)">Par défaut</button>
+    <button class="sort-btn" onclick="sortPrice('savings',this)">Plus grosse économie</button>
+    <button class="sort-btn" onclick="sortPrice('physical',this)">Magasin le moins cher</button>
+    <button class="sort-btn" onclick="sortPrice('digital',this)">Digital le moins cher</button>
+  </div>
+  <div class="price-grid" id="priceTable"></div>
+</div>
+
+<div class="zl-lane" id="zl2" style="margin-top:1.5rem;"></div>
+
+<footer>
+  <div class="foot-logo">The <em>Hundred</em> Best Games</div>
+  <div class="foot-sub">© 2026 — Données illustratives à titre indicatif</div>
+  <div style="margin-top:.6rem;font-size:.62rem;color:var(--t3);letter-spacing:.5px;">Sami Dziri</div>
+</footer>
+
+<script>
+const games = [
+  { rank:1,  emoji:"🎮", title:"Zelda: Tears of the Kingdom",    genre:"Aventure",  year:2023, platforms:["sw"],                 score:96, trend:"eq"   },
+  { rank:2,  emoji:"🐉", title:"Elden Ring",                      genre:"RPG",       year:2022, platforms:["pc","ps","xbox"],     score:95, trend:"up"   },
+  { rank:3,  emoji:"📜", title:"Baldur's Gate 3",                 genre:"RPG",       year:2023, platforms:["pc","ps"],            score:97, trend:"up"   },
+  { rank:4,  emoji:"🕸️", title:"Marvel's Spider-Man 2",           genre:"Action",    year:2023, platforms:["ps"],                 score:93, trend:"up"   },
+  { rank:5,  emoji:"🏔️", title:"God of War Ragnarök",             genre:"Action",    year:2022, platforms:["ps"],                 score:94, trend:"down" },
+  { rank:6,  emoji:"🌿", title:"Hollow Knight: Silksong",         genre:"Aventure",  year:2024, platforms:["pc","sw","xbox"],     score:92, trend:"up"   },
+  { rank:7,  emoji:"🌌", title:"Cyberpunk 2077: Phantom Liberty", genre:"RPG",       year:2023, platforms:["pc","ps","xbox"],     score:91, trend:"up"   },
+  { rank:8,  emoji:"🎯", title:"Alan Wake 2",                     genre:"Aventure",  year:2023, platforms:["pc","ps","xbox"],     score:89, trend:"up"   },
+  { rank:9,  emoji:"🏹", title:"Diablo IV",                       genre:"RPG",       year:2023, platforms:["pc","ps","xbox"],     score:88, trend:"up"   },
+  { rank:10, emoji:"🎸", title:"Hi-Fi Rush",                      genre:"Action",    year:2023, platforms:["pc","xbox"],          score:87, trend:"up"   },
+  { rank:11, emoji:"🚀", title:"Starfield",                       genre:"RPG",       year:2023, platforms:["pc","xbox"],          score:83, trend:"down" },
+  { rank:12, emoji:"💣", title:"Call of Duty: MW III",            genre:"FPS",       year:2023, platforms:["pc","ps","xbox"],     score:80, trend:"eq"   },
+  { rank:13, emoji:"⚽", title:"EA Sports FC 25",                 genre:"Sport",     year:2024, platforms:["pc","ps","xbox","sw"],score:79, trend:"down" },
+  { rank:14, emoji:"🌊", title:"Avatar: Frontiers of Pandora",    genre:"Action",    year:2023, platforms:["pc","ps","xbox"],     score:76, trend:"eq"   },
+  { rank:15, emoji:"🏗️", title:"Cities: Skylines II",             genre:"Stratégie", year:2023, platforms:["pc"],                 score:75, trend:"down" },
+];
+
+const valueGames = [
+  { emoji:"🐉", title:"Elden Ring",                       platforms:["pc","ps","xbox"], price:29.99, score:95, hours:60,  genre:"RPG",      why:"Un chef-d'œuvre à prix cassé — des centaines d'heures de contenu." },
+  { emoji:"📜", title:"Baldur's Gate 3",                  platforms:["pc","ps"],        price:59.99, score:97, hours:100, genre:"RPG",      why:"Le RPG le plus complet de la décennie, un contenu quasi infini." },
+  { emoji:"🎸", title:"Hi-Fi Rush",                       platforms:["pc","xbox"],      price:0,     score:87, hours:12,  genre:"Action",   why:"Inclus dans le Game Pass — absolument gratuit pour les abonnés." },
+  { emoji:"🌿", title:"Hollow Knight: Silksong",          platforms:["pc","sw","xbox"], price:19.99, score:92, hours:40,  genre:"Aventure", why:"Prix indie pour une expérience AAA — rapport qualité/prix exceptionnel." },
+  { emoji:"🌌", title:"Cyberpunk 2077 + Phantom Liberty", platforms:["pc","ps","xbox"], price:24.99, score:91, hours:70,  genre:"RPG",      why:"Bundle complet à prix réduit — un jeu entièrement transformé." },
+  { emoji:"🎯", title:"Alan Wake 2",                      platforms:["pc","ps","xbox"], price:0,     score:89, hours:15,  genre:"Aventure", why:"Disponible sur PS Plus Extra — gratuit avec l'abonnement." },
+];
+
+const priceData = [
+  { emoji:"🎮", title:"Zelda: Tears of the Kingdom", platforms:["sw"],
+    physical:{ fnac:49.99, micromania:49.99, amazon:42.99 },
+    digital:[ { platform:"sw", name:"Nintendo eShop", price:69.99 } ] },
+  { emoji:"🐉", title:"Elden Ring", platforms:["pc","ps","xbox"],
+    physical:{ fnac:29.99, micromania:34.99, amazon:19.97 },
+    digital:[ { platform:"pc", name:"Steam", price:39.99 }, { platform:"ps", name:"PS Store", price:39.99 }, { platform:"xbox", name:"Xbox Store", price:39.99 } ] },
+  { emoji:"📜", title:"Baldur's Gate 3", platforms:["pc","ps"],
+    physical:{ fnac:44.99, micromania:49.99, amazon:39.99 },
+    digital:[ { platform:"pc", name:"Steam", price:59.99 }, { platform:"ps", name:"PS Store", price:59.99 } ] },
+  { emoji:"🕸️", title:"Marvel's Spider-Man 2", platforms:["ps"],
+    physical:{ fnac:49.99, micromania:54.99, amazon:44.99 },
+    digital:[ { platform:"ps", name:"PS Store", price:79.99 } ] },
+  { emoji:"🏔️", title:"God of War Ragnarök", platforms:["ps"],
+    physical:{ fnac:29.99, micromania:34.99, amazon:22.99 },
+    digital:[ { platform:"ps", name:"PS Store", price:49.99 } ] },
+  { emoji:"🌌", title:"Cyberpunk 2077 + PL", platforms:["pc","ps","xbox"],
+    physical:{ fnac:19.99, micromania:24.99, amazon:14.99 },
+    digital:[ { platform:"pc", name:"Steam", price:29.99 }, { platform:"ps", name:"PS Store", price:39.99 }, { platform:"xbox", name:"Xbox Store", price:39.99 } ] },
+  { emoji:"🎯", title:"Alan Wake 2", platforms:["pc","ps","xbox"],
+    physical:{ fnac:34.99, micromania:39.99, amazon:29.99 },
+    digital:[ { platform:"pc", name:"Epic Store", price:49.99 }, { platform:"ps", name:"PS Store", price:49.99 }, { platform:"xbox", name:"Xbox Store", price:49.99 } ] },
+  { emoji:"💣", title:"Call of Duty: MW III", platforms:["pc","ps","xbox"],
+    physical:{ fnac:44.99, micromania:49.99, amazon:39.99 },
+    digital:[ { platform:"pc", name:"Battle.net", price:69.99 }, { platform:"ps", name:"PS Store", price:69.99 }, { platform:"xbox", name:"Xbox Store", price:69.99 } ] },
+  { emoji:"⚽", title:"EA Sports FC 25", platforms:["pc","ps","xbox"],
+    physical:{ fnac:34.99, micromania:39.99, amazon:24.99 },
+    digital:[ { platform:"pc", name:"EA App", price:59.99 }, { platform:"ps", name:"PS Store", price:59.99 }, { platform:"xbox", name:"Xbox Store", price:59.99 } ] },
+  { emoji:"🚀", title:"Starfield", platforms:["pc","xbox"],
+    physical:{ fnac:34.99, micromania:39.99, amazon:27.99 },
+    digital:[ { platform:"pc", name:"Steam", price:39.99 }, { platform:"xbox", name:"Xbox Store", price:39.99 } ] },
+  { emoji:"🏹", title:"Diablo IV", platforms:["pc","ps","xbox"],
+    physical:{ fnac:34.99, micromania:39.99, amazon:24.99 },
+    digital:[ { platform:"pc", name:"Battle.net", price:49.99 }, { platform:"ps", name:"PS Store", price:49.99 }, { platform:"xbox", name:"Xbox Store", price:49.99 } ] },
+  { emoji:"🧙", title:"Hogwarts Legacy", platforms:["pc","ps","xbox","sw"],
+    physical:{ fnac:29.99, micromania:34.99, amazon:19.99 },
+    digital:[ { platform:"pc", name:"Steam", price:49.99 }, { platform:"ps", name:"PS Store", price:49.99 }, { platform:"xbox", name:"Xbox Store", price:49.99 }, { platform:"sw", name:"eShop", price:44.99 } ] },
+  { emoji:"🏗️", title:"Cities: Skylines II", platforms:["pc"],
+    physical:null,
+    digital:[ { platform:"pc", name:"Steam", price:44.99 } ] },
+];
+
+/* helpers */
+const pMap = {pc:'PC',ps:'PS5',xbox:'Xbox',sw:'Switch'};
+function scoreClass(s){return s>=90?'score-green':s>=80?'score-teal':s>=70?'score-yellow':'score-orange';}
+function rankClass(r){return r===1?'gold':r===2?'silver':r===3?'bronze':'';}
+function trendIcon(t){return {up:'<span class="trend up">▲</span>',down:'<span class="trend down">▼</span>',eq:'<span class="trend eq">—</span>'}[t]||'<span class="trend eq">—</span>';}
+function pb(p){return `<span class="platform ${p}">${pMap[p]}</span>`;}
+function chartColor(s){return s>=90?'pur':s>=80?'teal':'gold';}
+
+/* rank table */
+function renderGames(list){
+  document.getElementById('rankTable').innerHTML=list.map((g,i)=>`
+    <div class="rank-row ${g.rank<=3?'top3':''} reveal rv-up" style="--d:${Math.min(i*45,500)}ms">
+      <div class="rank-num ${rankClass(g.rank)}">${g.rank}</div>
+      <div class="game-cover">${g.emoji}</div>
+      <div class="game-info">
+        <div class="game-title">${g.title}</div>
+        <div class="game-meta"><span class="tag">${g.genre}</span><span class="year-label">${g.year}</span></div>
+      </div>
+      <div class="platforms">${g.platforms.map(pb).join('')}</div>
+      ${trendIcon(g.trend)}
+      <div class="score-box ${scoreClass(g.score)}">
+        <div class="score-num">${g.score}</div>
+        <div class="score-label">Score</div>
+      </div>
+    </div>`).join('');
+}
+function filterGames(genre,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGames(genre==='all'?games:games.filter(g=>g.genre===genre));
+}
+
+/* score chart */
+function renderChart(){
+  document.getElementById('scoreChart').innerHTML=[...games].sort((a,b)=>a.rank-b.rank).map(g=>{
+    const c=chartColor(g.score);
+    return `<div class="ce">
+      <div class="ce-rank ${g.rank<=3?'top':''}">${g.rank}</div>
+      <div class="ce-body">
+        <div class="ce-name">${g.title}</div>
+        <div class="ce-track"><div class="ce-fill cf-${c}" data-w="${g.score}"></div></div>
+      </div>
+      <div class="ce-val cv-${c}">${g.score}</div>
+    </div>`;
+  }).join('');
+  requestAnimationFrame(()=>document.querySelectorAll('.ce-fill').forEach(el=>el.style.width=el.dataset.w+'%'));
+}
+
+/* value */
+function calcRatio(g){return g.price===0?100:Math.min(100,Math.round((g.score*g.hours)/g.price/2));}
+function ratioClass(r){return r>=75?'excellent':r>=50?'good':'ok';}
+function ratioLabel(r){return r>=75?'Excellent':r>=50?'Bon':'Correct';}
+function renderValue(){
+  document.getElementById('valueGrid').innerHTML=valueGames.map((g,i)=>{
+    const ratio=calcRatio(g),rc=ratioClass(ratio);
+    const priceStr=g.price===0?'<span class="vc-price free">Gratuit ✓</span>':`<span class="vc-price">${g.price.toFixed(2)} €</span>`;
+    return `<div class="value-card ${i<2?'top-pick':''} reveal rv-scale" style="--d:${Math.min(i*70,500)}ms">
+      <div class="vc-top">
+        <div class="vc-emoji">${g.emoji}</div>
+        <div class="vc-info">
+          <div class="vc-title">${g.title}</div>
+          <div class="vc-meta">${priceStr}<span class="tag">${g.genre}</span></div>
+          <div class="vc-plat">${g.platforms.map(pb).join('')}</div>
+        </div>
+      </div>
+      <div class="vc-stats">
+        <div class="vc-stat"><div class="vc-stat-val">${g.score}</div><div class="vc-stat-lbl">Score</div></div>
+        <div class="vc-stat"><div class="vc-stat-val">~${g.hours}h</div><div class="vc-stat-lbl">Durée</div></div>
+        <div class="vc-stat"><div class="vc-stat-val">${g.price===0?'∞':(g.hours/g.price).toFixed(1)+'h'}</div><div class="vc-stat-lbl">/ euro</div></div>
+      </div>
+      <div class="vc-bar-row">
+        <div class="bar-track"><div class="bar-fill ${rc}" style="width:${ratio}%"></div></div>
+        <span class="ratio-label ${rc}">${ratioLabel(ratio)}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* price */
+const physStores=[
+  {key:'fnac',      label:'Fnac',      icon:'🟡',cls:'v-fnac'},
+  {key:'micromania',label:'Micromania',icon:'🔴',cls:'v-micromania'},
+  {key:'amazon',    label:'Amazon',    icon:'🟠',cls:'v-amazon'},
+];
+function renderPrice(list){
+  document.getElementById('priceTable').innerHTML=list.map((g,i)=>{
+    const noPhys=g.physical===null;
+    const physPrices=noPhys?[]:Object.values(g.physical);
+    const allPrices=[...physPrices,...g.digital.map(s=>s.price)];
+    const minP=Math.min(...allPrices), maxP=Math.max(...allPrices);
+    const eco=maxP-minP;
+    let winner;
+    if(!noPhys&&Math.min(...physPrices)===minP){
+      const ws=physStores.find(s=>g.physical[s.key]===minP);
+      winner=`<div class="v-badge ${ws.cls}">${ws.icon} ${ws.label} · ${minP.toFixed(2)} €</div>`;
+    } else {
+      winner=`<div class="v-badge v-digital">💻 Digital · ${minP.toFixed(2)} €</div>`;
+    }
+    const physRows=noPhys?'':physStores.map(s=>{
+      const p=g.physical[s.key],best=p===minP,w=Math.round(p/maxP*100);
+      return `<div class="pc-bar-row">
+        <div class="pc-bar-lbl ${best?'best':''}">${s.icon} ${s.label}</div>
+        <div class="pc-bar-track"><div class="pc-bar-fill ${best?'bf-best':'bf-phys'}" data-w="${w}"></div></div>
+        <div class="pc-bar-price ${best?'best':''}">${p.toFixed(2)} €${best?' ✓':''}</div>
+      </div>`;
+    }).join('');
+    const digRows=g.digital.map(s=>{
+      const best=s.price===minP,w=Math.round(s.price/maxP*100);
+      return `<div class="pc-bar-row">
+        <div class="pc-bar-lbl ${best?'best':''}"><span class="platform ${s.platform}" style="font-size:.5rem;padding:1px 4px;margin-right:2px">${pMap[s.platform]}</span>${s.name}</div>
+        <div class="pc-bar-track"><div class="pc-bar-fill ${best?'bf-best':'bf-dig'}" data-w="${w}"></div></div>
+        <div class="pc-bar-price ${best?'best':''}">${s.price.toFixed(2)} €${best?' ✓':''}</div>
+      </div>`;
+    }).join('');
+    return `<div class="pc-card ${noPhys?'pc-only':''} reveal rv-scale" style="--d:${Math.min(i*80,500)}ms">
+      <div class="pc-head">
+        <div class="pc-emoji">${g.emoji}</div>
+        <div class="pc-info">
+          <div class="pc-title">${g.title}</div>
+          <div class="pc-plat">${g.platforms.map(pb).join('')}</div>
+        </div>
+        <div class="pc-best">
+          <div class="pc-best-lbl">Meilleur prix</div>
+          ${winner}
+          <div class="pc-savings">${eco>0.5?'−'+eco.toFixed(2)+' €':''}</div>
+        </div>
+      </div>
+      <div class="pc-chart">
+        ${!noPhys?`<div class="pc-sec-lbl">🏪 Magasins</div>${physRows}<div class="pc-sep"></div>`:''}
+        <div class="pc-sec-lbl">💻 Digital</div>${digRows}
+      </div>
+    </div>`;
+  }).join('');
+  requestAnimationFrame(()=>document.querySelectorAll('.pc-bar-fill').forEach(el=>el.style.width=el.dataset.w+'%'));
+}
+function sortPrice(mode,btn){
+  document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  let s=[...priceData];
+  if(mode==='savings'){
+    s.sort((a,b)=>{
+      const allA=[...(a.physical?Object.values(a.physical):[]),...a.digital.map(x=>x.price)];
+      const allB=[...(b.physical?Object.values(b.physical):[]),...b.digital.map(x=>x.price)];
+      return(Math.max(...allB)-Math.min(...allB))-(Math.max(...allA)-Math.min(...allA));
+    });
+  } else if(mode==='physical'){
+    s.sort((a,b)=>(a.physical?Math.min(...Object.values(a.physical)):9999)-(b.physical?Math.min(...Object.values(b.physical)):9999));
+  } else if(mode==='digital'){
+    s.sort((a,b)=>Math.min(...a.digital.map(x=>x.price))-Math.min(...b.digital.map(x=>x.price)));
+  }
+  renderPrice(s);
+}
+
+/* mobile nav */
+function toggleMenu(){document.getElementById('hamburger').classList.toggle('open');document.getElementById('mobileNav').classList.toggle('open');}
+function closeMenu(){document.getElementById('hamburger').classList.remove('open');document.getElementById('mobileNav').classList.remove('open');}
+document.addEventListener('click',e=>{
+  const nav=document.getElementById('mobileNav'),btn=document.getElementById('hamburger');
+  if(nav.classList.contains('open')&&!nav.contains(e.target)&&!btn.contains(e.target))closeMenu();
+});
+
+function initReveal(){
+  const io=new IntersectionObserver((entries,obs)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.07,rootMargin:'0px 0px -32px 0px'});
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>io.observe(el));
+}
+
+renderGames(games);
+renderChart();
+renderValue();
+renderPrice(priceData);
+initReveal();
+
+const _origRenderGames=renderGames;
+renderGames=function(list){_origRenderGames(list);initReveal();};
+
+/* ── ZOMBIE LANE ── */
+class ZombieLane {
+  constructor(id) {
+    this.el = document.getElementById(id);
+    if (!this.el) return;
+    this.zombies = [];
+    this.bullets = [];
+    this.lastSpawn = -9999;
+    this.nextDelay = 1800;
+    this._build();
+    this._scheduleShot();
+    requestAnimationFrame(t => this._tick(t));
+  }
+  _build() {
+    const gm = document.createElement('div');
+    gm.className = 'zl-gunman';
+    gm.innerHTML =
+      '<svg class="zl-gm-svg" width="24" height="56" viewBox="0 0 24 56" fill="none">'+
+        /* hat brim */'<rect x="1" y="9" width="20" height="3" rx="1.5" fill="#7a4e1a"/>'+
+        /* hat crown */'<rect x="4" y="1" width="14" height="10" rx="2" fill="#5c3810"/>'+
+        /* head */'<rect x="5" y="11" width="12" height="11" rx="3.5" fill="#f0b888"/>'+
+        /* eye */'<circle cx="13" cy="15" r="1.3" fill="#2a1a0e"/>'+
+        /* moustache */'<rect x="8" y="19" width="6" height="1.8" rx=".9" fill="#8b5a1a"/>'+
+        /* shirt */'<rect x="4" y="22" width="16" height="14" rx="2" fill="#3a6e34"/>'+
+        /* right arm */'<rect x="18" y="25" width="6" height="5" rx="2" fill="#3a6e34"/>'+
+        /* left arm */'<rect x="0" y="25" width="6" height="5" rx="2" fill="#3a6e34"/>'+
+        /* left leg */'<rect x="4" y="36" width="7" height="14" rx="2" fill="#2a4a7c"/>'+
+        /* right leg */'<rect x="13" y="36" width="7" height="14" rx="2" fill="#2a4a7c"/>'+
+        /* left boot */'<rect x="3" y="47" width="9" height="5" rx="1.5" fill="#3a2510"/>'+
+        /* right boot */'<rect x="12" y="47" width="9" height="5" rx="1.5" fill="#3a2510"/>'+
+      '</svg>'+
+      '<div class="zl-gun-barrel"></div>';
+    this.el.appendChild(gm);
+    this.barrel = gm.querySelector('.zl-gun-barrel');
+  }
+  _scheduleShot() {
+    setTimeout(() => { this._shoot(); this._scheduleShot(); }, 2100 + Math.random()*900);
+  }
+  _shoot() {
+    this.barrel.classList.add('firing');
+    setTimeout(() => this.barrel.classList.remove('firing'), 160);
+    const b = document.createElement('div');
+    b.className = 'zl-bullet';
+    b.style.left = '37px';
+    this.el.appendChild(b);
+    this.bullets.push({ el: b, x: 37, dead: false });
+  }
+  _spawnZombie() {
+    if (this.zombies.length >= 4) return;
+    const z = document.createElement('span');
+    z.className = 'zl-zombie walking';
+    z.textContent = '🧟';
+    const x = (this.el.offsetWidth || 800) + 10;
+    z.style.left = x + 'px';
+    this.el.appendChild(z);
+    this.zombies.push({ el: z, x, dead: false });
+  }
+  _killZombie(z, bx) {
+    z.dead = true;
+    z.el.style.animation = 'none';
+    z.el.style.transition = 'opacity .28s, filter .28s';
+    z.el.style.opacity = '0';
+    z.el.style.filter = 'brightness(5) saturate(0)';
+    const splat = document.createElement('span');
+    splat.className = 'zl-splat';
+    splat.style.left = (bx - 4) + 'px';
+    splat.textContent = '💥';
+    this.el.appendChild(splat);
+    setTimeout(() => { z.el.remove(); splat.remove(); }, 420);
+  }
+  _tick(t) {
+    const W = this.el.offsetWidth || 800;
+    if (t - this.lastSpawn > this.nextDelay && this.zombies.length < 4) {
+      this._spawnZombie();
+      this.lastSpawn = t;
+      this.nextDelay = 2000 + Math.random() * 2000;
+    }
+    for (const z of this.zombies) {
+      if (z.dead) continue;
+      z.x -= 0.72;
+      z.el.style.left = z.x + 'px';
+      if (z.x < -30) { z.dead = true; z.el.remove(); }
+    }
+    for (const b of this.bullets) {
+      if (b.dead) continue;
+      b.x += 5.5;
+      b.el.style.left = b.x + 'px';
+      for (const z of this.zombies) {
+        if (!z.dead && !b.dead && b.x + 6 > z.x && b.x < z.x + 26) {
+          b.dead = true;
+          b.el.remove();
+          this._killZombie(z, b.x);
+        }
+      }
+      if (b.x > W + 20) { b.dead = true; b.el.remove(); }
+    }
+    this.zombies = this.zombies.filter(z => !z.dead);
+    this.bullets = this.bullets.filter(b => !b.dead);
+    requestAnimationFrame(t => this._tick(t));
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  new ZombieLane('zl2');
+});
+
+function toggleTheme(){
+  const next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+  document.documentElement.setAttribute('data-theme',next);
+  document.getElementById('themeBtn').textContent=next==='light'?'🌙':'☀️';
+  localStorage.setItem('theme',next);
+}
+(function(){
+  const t=localStorage.getItem('theme')||'dark';
+  document.documentElement.setAttribute('data-theme',t);
+  document.addEventListener('DOMContentLoaded',function(){
+    const btn=document.getElementById('themeBtn');
+    if(btn)btn.textContent=t==='light'?'🌙':'☀️';
+  });
+})();
+</script>
+</body>
+</html>
